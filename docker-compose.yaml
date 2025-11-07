@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+
+  api:
+    build:
+      context: .
+    ports:
+      - 5000:5000
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: mongodb://admin:admin@mongodb:27017/
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+volumes:
+  mongodb_data:
+
