@@ -1,2 +1,2 @@
 #!/bin/bash
-source .venv/bin/activate
+echo " Executando ambiente virtual" && sleep 2 && source .venv/bin/activate

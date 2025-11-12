@@ -21,8 +21,6 @@ services:
     restart: always
     depends_on:
       - mongodb
-    environment:
-      MONGO_URI: mongodb://admin:admin@mongodb:27017/
     volumes:
       - ./:/app
     working_dir: /app
