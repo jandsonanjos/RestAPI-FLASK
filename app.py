@@ -16,10 +16,10 @@ connect(
 )
 
 _user_parser = reqparse.RequestParser()
-_user_parser.add_argument('name', 
+_user_parser.add_argument('first_name', 
         type=str, 
         required=True, 
-        help='Name is required')
+        help='First name is required')
 _user_parser.add_argument('last_name', 
         type=str, 
         required=True, 
@@ -55,12 +55,15 @@ class UserModel(me.Document):
 class Users(Resource):
     def get(self):
         data = _user_parser.parse_args()
+        UserModel(**data).save()
         return data
+    print("Salvo")
 
 
 class User(Resource):
     def post(self):
-        return {'message': 'CPF'}
+        data = _user_parser.parse_args()
+        return data
 
     def get(self, cpf):
         return {"message": "CPF"}
