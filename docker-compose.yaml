@@ -14,7 +14,7 @@ services:
   api:
     build:
       context: .
-    ports:
+    ports: 
       - 5000:5000
     restart: always
     depends_on:
